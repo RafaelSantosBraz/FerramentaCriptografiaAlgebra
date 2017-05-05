@@ -1,0 +1,9 @@
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\bin\Debug\Criptografia.exe.config
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\bin\Debug\Criptografia.exe
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\bin\Debug\Criptografia.pdb
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\obj\Debug\Criptografia.csprojResolveAssemblyReference.cache
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\obj\Debug\Criptografia.Properties.Resources.resources
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\obj\Debug\Criptografia.csproj.GenerateResource.Cache
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\obj\Debug\Criptografia.exe
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\obj\Debug\Criptografia.pdb
+R:\GitHub\FerramentaCriptografiaAlgebra\Criptografia\Criptografia\obj\Debug\Criptografia.Principal.resources

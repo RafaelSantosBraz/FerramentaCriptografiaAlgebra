@@ -31,6 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.menuAbas = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.botaoSair = new System.Windows.Forms.Button();
+            this.botaoLimpar = new System.Windows.Forms.Button();
+            this.botaoCodificar = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.campoMensagemCodificada = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.campoMensagem = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.botaoMatrizAleatoria = new System.Windows.Forms.Button();
+            this.campoMatrizCodificadora = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,24 +49,13 @@
             this.açõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.criptografiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.descriptografiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.campoMatrizCodificadora = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.botaoMatrizAleatoria = new System.Windows.Forms.Button();
-            this.campoMensagem = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.botaoCodificar = new System.Windows.Forms.Button();
-            this.botaoLimpar = new System.Windows.Forms.Button();
-            this.botaoSair = new System.Windows.Forms.Button();
             this.menuAbas.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.menu.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuAbas
@@ -81,6 +81,117 @@
             this.tabPage1.Size = new System.Drawing.Size(1482, 455);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Criptografia";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.botaoSair);
+            this.groupBox4.Controls.Add(this.botaoLimpar);
+            this.groupBox4.Controls.Add(this.botaoCodificar);
+            this.groupBox4.Location = new System.Drawing.Point(496, 367);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(484, 74);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Ações:";
+            // 
+            // botaoSair
+            // 
+            this.botaoSair.Location = new System.Drawing.Point(328, 32);
+            this.botaoSair.Name = "botaoSair";
+            this.botaoSair.Size = new System.Drawing.Size(150, 23);
+            this.botaoSair.TabIndex = 2;
+            this.botaoSair.Text = "Fechar Ferramenta";
+            this.botaoSair.UseVisualStyleBackColor = true;
+            this.botaoSair.Click += new System.EventHandler(this.botaoSair_Click);
+            // 
+            // botaoLimpar
+            // 
+            this.botaoLimpar.Location = new System.Drawing.Point(162, 32);
+            this.botaoLimpar.Name = "botaoLimpar";
+            this.botaoLimpar.Size = new System.Drawing.Size(160, 23);
+            this.botaoLimpar.TabIndex = 1;
+            this.botaoLimpar.Text = "Limpar Campos";
+            this.botaoLimpar.UseVisualStyleBackColor = true;
+            this.botaoLimpar.Click += new System.EventHandler(this.botaoLimpar_Click);
+            // 
+            // botaoCodificar
+            // 
+            this.botaoCodificar.Location = new System.Drawing.Point(6, 32);
+            this.botaoCodificar.Name = "botaoCodificar";
+            this.botaoCodificar.Size = new System.Drawing.Size(150, 23);
+            this.botaoCodificar.TabIndex = 0;
+            this.botaoCodificar.Text = "Codificar Mensagem";
+            this.botaoCodificar.UseVisualStyleBackColor = true;
+            this.botaoCodificar.Click += new System.EventHandler(this.botaoCodificar_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.campoMensagemCodificada);
+            this.groupBox3.Location = new System.Drawing.Point(986, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(484, 355);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Resultado:";
+            // 
+            // campoMensagemCodificada
+            // 
+            this.campoMensagemCodificada.Location = new System.Drawing.Point(6, 25);
+            this.campoMensagemCodificada.Multiline = true;
+            this.campoMensagemCodificada.Name = "campoMensagemCodificada";
+            this.campoMensagemCodificada.ReadOnly = true;
+            this.campoMensagemCodificada.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.campoMensagemCodificada.Size = new System.Drawing.Size(472, 324);
+            this.campoMensagemCodificada.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.campoMensagem);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(484, 355);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Mensagem:";
+            // 
+            // campoMensagem
+            // 
+            this.campoMensagem.Location = new System.Drawing.Point(6, 25);
+            this.campoMensagem.Multiline = true;
+            this.campoMensagem.Name = "campoMensagem";
+            this.campoMensagem.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.campoMensagem.Size = new System.Drawing.Size(472, 324);
+            this.campoMensagem.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.botaoMatrizAleatoria);
+            this.groupBox1.Controls.Add(this.campoMatrizCodificadora);
+            this.groupBox1.Location = new System.Drawing.Point(496, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(484, 355);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Matriz Codificadora:";
+            // 
+            // botaoMatrizAleatoria
+            // 
+            this.botaoMatrizAleatoria.Location = new System.Drawing.Point(6, 25);
+            this.botaoMatrizAleatoria.Name = "botaoMatrizAleatoria";
+            this.botaoMatrizAleatoria.Size = new System.Drawing.Size(472, 23);
+            this.botaoMatrizAleatoria.TabIndex = 1;
+            this.botaoMatrizAleatoria.Text = "Gerar Matriz Codificadora Aleatória";
+            this.botaoMatrizAleatoria.UseVisualStyleBackColor = true;
+            this.botaoMatrizAleatoria.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // campoMatrizCodificadora
+            // 
+            this.campoMatrizCodificadora.Location = new System.Drawing.Point(6, 54);
+            this.campoMatrizCodificadora.Multiline = true;
+            this.campoMatrizCodificadora.Name = "campoMatrizCodificadora";
+            this.campoMatrizCodificadora.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.campoMatrizCodificadora.Size = new System.Drawing.Size(472, 295);
+            this.campoMatrizCodificadora.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -115,7 +226,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(109, 26);
             this.sairToolStripMenuItem.Text = "Sair";
             // 
             // açõesToolStripMenuItem
@@ -139,114 +250,6 @@
             this.descriptografiaToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
             this.descriptografiaToolStripMenuItem.Text = "Descriptografia";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.botaoMatrizAleatoria);
-            this.groupBox1.Controls.Add(this.campoMatrizCodificadora);
-            this.groupBox1.Location = new System.Drawing.Point(496, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(484, 355);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Matriz Codificadora:";
-            // 
-            // campoMatrizCodificadora
-            // 
-            this.campoMatrizCodificadora.Location = new System.Drawing.Point(6, 54);
-            this.campoMatrizCodificadora.Multiline = true;
-            this.campoMatrizCodificadora.Name = "campoMatrizCodificadora";
-            this.campoMatrizCodificadora.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.campoMatrizCodificadora.Size = new System.Drawing.Size(472, 295);
-            this.campoMatrizCodificadora.TabIndex = 0;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.campoMensagem);
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(484, 355);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Mensagem:";
-            // 
-            // botaoMatrizAleatoria
-            // 
-            this.botaoMatrizAleatoria.Location = new System.Drawing.Point(6, 25);
-            this.botaoMatrizAleatoria.Name = "botaoMatrizAleatoria";
-            this.botaoMatrizAleatoria.Size = new System.Drawing.Size(472, 23);
-            this.botaoMatrizAleatoria.TabIndex = 1;
-            this.botaoMatrizAleatoria.Text = "Gerar Matriz Codificadora Aleatória";
-            this.botaoMatrizAleatoria.UseVisualStyleBackColor = true;
-            this.botaoMatrizAleatoria.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // campoMensagem
-            // 
-            this.campoMensagem.Location = new System.Drawing.Point(6, 25);
-            this.campoMensagem.Multiline = true;
-            this.campoMensagem.Name = "campoMensagem";
-            this.campoMensagem.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.campoMensagem.Size = new System.Drawing.Size(472, 324);
-            this.campoMensagem.TabIndex = 1;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(986, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(484, 355);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Resultado:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 25);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(472, 324);
-            this.textBox1.TabIndex = 1;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.botaoSair);
-            this.groupBox4.Controls.Add(this.botaoLimpar);
-            this.groupBox4.Controls.Add(this.botaoCodificar);
-            this.groupBox4.Location = new System.Drawing.Point(496, 367);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(484, 74);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Ações:";
-            // 
-            // botaoCodificar
-            // 
-            this.botaoCodificar.Location = new System.Drawing.Point(6, 32);
-            this.botaoCodificar.Name = "botaoCodificar";
-            this.botaoCodificar.Size = new System.Drawing.Size(150, 23);
-            this.botaoCodificar.TabIndex = 0;
-            this.botaoCodificar.Text = "Codificar Mensagem";
-            this.botaoCodificar.UseVisualStyleBackColor = true;
-            // 
-            // botaoLimpar
-            // 
-            this.botaoLimpar.Location = new System.Drawing.Point(162, 32);
-            this.botaoLimpar.Name = "botaoLimpar";
-            this.botaoLimpar.Size = new System.Drawing.Size(160, 23);
-            this.botaoLimpar.TabIndex = 1;
-            this.botaoLimpar.Text = "Limpar Campos";
-            this.botaoLimpar.UseVisualStyleBackColor = true;
-            // 
-            // botaoSair
-            // 
-            this.botaoSair.Location = new System.Drawing.Point(328, 32);
-            this.botaoSair.Name = "botaoSair";
-            this.botaoSair.Size = new System.Drawing.Size(150, 23);
-            this.botaoSair.TabIndex = 2;
-            this.botaoSair.Text = "Fechar Ferramenta";
-            this.botaoSair.UseVisualStyleBackColor = true;
-            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -264,15 +267,15 @@
             this.Text = "CriptoÁlgebra - Rafael Braz";
             this.menuAbas.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.menu.ResumeLayout(false);
-            this.menu.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,7 +298,7 @@
         private System.Windows.Forms.Button botaoMatrizAleatoria;
         private System.Windows.Forms.TextBox campoMensagem;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox campoMensagemCodificada;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button botaoSair;
         private System.Windows.Forms.Button botaoLimpar;

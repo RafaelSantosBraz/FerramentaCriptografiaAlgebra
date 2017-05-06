@@ -27,8 +27,7 @@ namespace Criptografia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            nucleo.gerarMatrizAleatoria(10);
-            campoMensagemCodificada.Text = Convert.ToString(nucleo.MatrizCodificadora.Rank);
+            nucleo.gerarMatrizAleatoria(50);
             campoMatrizCodificadora.Text = "";
             for (int c = 0; c < nucleo.MatrizCodificadora.GetLength(0); c++)
             {
@@ -46,6 +45,10 @@ namespace Criptografia
             {
                 MessageBox.Show("Os campos Mensagem e Matriz Codificadora não podem ser nulos!", "AVISO");
                 return;
+            } 
+            if(campoMatrizCodificadora.Text[campoMatrizCodificadora.Text.Length - 1] == '\n')
+            {
+                campoMatrizCodificadora.Text = campoMatrizCodificadora.Text.Remove(campoMatrizCodificadora.Text.Length - 2);
             }
             if (!nucleo.inserirMatrizCodificadora(campoMatrizCodificadora.Text, campoMatrizCodificadora.Lines.Length))
             {
@@ -57,7 +60,18 @@ namespace Criptografia
                 MessageBox.Show("Matriz Codificadora Inválida!", "AVISO");
                 return;
             }
-
+            nucleo.inserirMatrizMensagem(campoMensagem.Text);
+            nucleo.codificarMensagem();
+            campoMensagemCodificada.Text = "";
+            for (int c = 0; c < nucleo.MatrizResultado.GetLength(0); c++)
+            {
+                for (int i = 0; i < nucleo.MatrizResultado.GetLength(1); i++)
+                {
+                    campoMensagemCodificada.Text += Convert.ToString(nucleo.MatrizResultado[c, i]) + ' ';
+                }
+                campoMensagemCodificada.Text += Environment.NewLine;
+            }
+            MessageBox.Show("Matriz Codificada!", "AVISO");
         }
 
 
@@ -71,6 +85,11 @@ namespace Criptografia
         private void botaoSair_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            botaoSair_Click(sender, e);
         }
     }
 }

@@ -49,6 +49,8 @@
             this.açõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.criptografiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.descriptografiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.campoMatrizDecodificadora = new System.Windows.Forms.TextBox();
             this.menuAbas.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -56,6 +58,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menu.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuAbas
@@ -71,6 +74,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -98,7 +102,7 @@
             // 
             this.botaoSair.Location = new System.Drawing.Point(328, 32);
             this.botaoSair.Name = "botaoSair";
-            this.botaoSair.Size = new System.Drawing.Size(150, 23);
+            this.botaoSair.Size = new System.Drawing.Size(150, 29);
             this.botaoSair.TabIndex = 2;
             this.botaoSair.Text = "Fechar Ferramenta";
             this.botaoSair.UseVisualStyleBackColor = true;
@@ -108,7 +112,7 @@
             // 
             this.botaoLimpar.Location = new System.Drawing.Point(162, 32);
             this.botaoLimpar.Name = "botaoLimpar";
-            this.botaoLimpar.Size = new System.Drawing.Size(160, 23);
+            this.botaoLimpar.Size = new System.Drawing.Size(160, 29);
             this.botaoLimpar.TabIndex = 1;
             this.botaoLimpar.Text = "Limpar Campos";
             this.botaoLimpar.UseVisualStyleBackColor = true;
@@ -118,7 +122,7 @@
             // 
             this.botaoCodificar.Location = new System.Drawing.Point(6, 32);
             this.botaoCodificar.Name = "botaoCodificar";
-            this.botaoCodificar.Size = new System.Drawing.Size(150, 23);
+            this.botaoCodificar.Size = new System.Drawing.Size(150, 29);
             this.botaoCodificar.TabIndex = 0;
             this.botaoCodificar.Text = "Codificar Mensagem";
             this.botaoCodificar.UseVisualStyleBackColor = true;
@@ -169,7 +173,7 @@
             this.groupBox1.Controls.Add(this.campoMatrizCodificadora);
             this.groupBox1.Location = new System.Drawing.Point(496, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(484, 355);
+            this.groupBox1.Size = new System.Drawing.Size(484, 212);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Matriz Codificadora:";
@@ -178,7 +182,7 @@
             // 
             this.botaoMatrizAleatoria.Location = new System.Drawing.Point(6, 25);
             this.botaoMatrizAleatoria.Name = "botaoMatrizAleatoria";
-            this.botaoMatrizAleatoria.Size = new System.Drawing.Size(472, 23);
+            this.botaoMatrizAleatoria.Size = new System.Drawing.Size(472, 29);
             this.botaoMatrizAleatoria.TabIndex = 1;
             this.botaoMatrizAleatoria.Text = "Gerar Matriz Codificadora Aleatória";
             this.botaoMatrizAleatoria.UseVisualStyleBackColor = true;
@@ -186,11 +190,11 @@
             // 
             // campoMatrizCodificadora
             // 
-            this.campoMatrizCodificadora.Location = new System.Drawing.Point(6, 54);
+            this.campoMatrizCodificadora.Location = new System.Drawing.Point(6, 60);
             this.campoMatrizCodificadora.Multiline = true;
             this.campoMatrizCodificadora.Name = "campoMatrizCodificadora";
             this.campoMatrizCodificadora.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.campoMatrizCodificadora.Size = new System.Drawing.Size(472, 295);
+            this.campoMatrizCodificadora.Size = new System.Drawing.Size(472, 143);
             this.campoMatrizCodificadora.TabIndex = 0;
             // 
             // tabPage2
@@ -219,15 +223,18 @@
             // 
             this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sairToolStripMenuItem});
+            this.opçõesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("opçõesToolStripMenuItem.Image")));
             this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
-            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
             this.opçõesToolStripMenuItem.Text = "Opções";
             // 
             // sairToolStripMenuItem
             // 
+            this.sairToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sairToolStripMenuItem.Image")));
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(109, 26);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // açõesToolStripMenuItem
             // 
@@ -249,6 +256,26 @@
             this.descriptografiaToolStripMenuItem.Name = "descriptografiaToolStripMenuItem";
             this.descriptografiaToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
             this.descriptografiaToolStripMenuItem.Text = "Descriptografia";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.campoMatrizDecodificadora);
+            this.groupBox5.Location = new System.Drawing.Point(496, 224);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(484, 137);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Matriz Decodificadora:";
+            // 
+            // campoMatrizDecodificadora
+            // 
+            this.campoMatrizDecodificadora.Location = new System.Drawing.Point(6, 21);
+            this.campoMatrizDecodificadora.Multiline = true;
+            this.campoMatrizDecodificadora.Name = "campoMatrizDecodificadora";
+            this.campoMatrizDecodificadora.ReadOnly = true;
+            this.campoMatrizDecodificadora.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.campoMatrizDecodificadora.Size = new System.Drawing.Size(472, 110);
+            this.campoMatrizDecodificadora.TabIndex = 0;
             // 
             // Principal
             // 
@@ -276,6 +303,8 @@
             this.groupBox1.PerformLayout();
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,5 +332,7 @@
         private System.Windows.Forms.Button botaoSair;
         private System.Windows.Forms.Button botaoLimpar;
         private System.Windows.Forms.Button botaoCodificar;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox campoMatrizDecodificadora;
     }
 }

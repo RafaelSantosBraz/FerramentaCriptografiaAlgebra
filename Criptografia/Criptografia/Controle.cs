@@ -10,19 +10,24 @@ namespace Criptografia
     class Controle
     {
         private int[,] matrizCodificadora;
-
+        private char[,] matrizMensagem;
+        private int[,] matrizResultado;
 
         public Controle()
         {
             MatrizCodificadora = new int[1, 1];
+            matrizMensagem = new char[1, 1];
+            MatrizResultado = new int[1, 1];
         }
 
         public int[,] MatrizCodificadora { get => matrizCodificadora; set => matrizCodificadora = value; }
+        public char[,] MatrizMensagem { get => matrizMensagem; set => matrizMensagem = value; }
+        public int[,] MatrizResultado { get => matrizResultado; set => matrizResultado = value; }
 
         public void gerarMatrizAleatoria(int limite)
         {
             Random x = new Random();
-            int aux = x.Next(2, 9);
+            int aux = x.Next(2, 11);
             MatrizCodificadora = new int[aux, aux];
 
             for (int c = 0; c < aux; c++)
@@ -40,7 +45,6 @@ namespace Criptografia
             {
                 return false;
             }
-            MessageBox.Show(Convert.ToString(determinante(mat)), "AVISO");
             return true;
         }
 
@@ -115,8 +119,40 @@ namespace Criptografia
                 {
                     det -= mat[0, c] * determinante(nova);
                 }
-            }         
+            }
             return det;
+        }
+
+        public void inserirMatrizMensagem(String texto)
+        {
+            if (texto.Length / matrizCodificadora.GetLength(1) == 0)
+            {
+                matrizMensagem = new char[matrizCodificadora.GetLength(1), 1];
+            }
+            else if (texto.Length % matrizCodificadora.GetLength(1) != 0)
+            {
+                matrizMensagem = new char[matrizCodificadora.GetLength(1), texto.Length / matrizCodificadora.GetLength(1) + 1];            
+            }
+            else
+            {
+                matrizMensagem = new char[matrizCodificadora.GetLength(1), texto.Length / matrizCodificadora.GetLength(1)];
+            }
+            int pos = 0;
+            for (int c = 0; c < matrizMensagem.GetLength(0); c++)
+            {
+                for (int i = 0; i < matrizMensagem.GetLength(1); i++)
+                {
+                    if (pos < texto.Length)
+                    {
+                        matrizMensagem[c, i] = texto[pos];
+                        pos++;
+                    }
+                    else
+                    {
+                        matrizMensagem[c, i] = ' ';
+                    }
+                }
+            }
         }
 
         public bool inserirMatrizCodificadora(String texto, int linhas)
@@ -149,6 +185,23 @@ namespace Criptografia
                 }
             }
             return true;
+        }
+
+        public void codificarMensagem()
+        {
+            matrizResultado = new int[matrizMensagem.GetLength(0), matrizMensagem.GetLength(1)];
+            for (int c = 0; c < MatrizResultado.GetLength(0); c++)
+            {
+                for (int i = 0; i < MatrizResultado.GetLength(1); i++)
+                {
+                    int resultado = 0;
+                    for (int j = 0; j < matrizCodificadora.GetLength(1); j++)
+                    {
+                        resultado += matrizCodificadora[c, j] * (int)matrizMensagem[j, i];
+                    }
+                    matrizResultado[c, i] = resultado;
+                }
+            }
         }
     }
 }

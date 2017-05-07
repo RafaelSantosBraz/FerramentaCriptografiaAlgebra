@@ -62,16 +62,17 @@ namespace Criptografia
             }
             nucleo.inserirMatrizMensagem(campoMensagem.Text);
             nucleo.codificarMensagem();
-            campoMensagemCodificada.Text = "";
+            String aux = "";
             for (int c = 0; c < nucleo.MatrizResultado.GetLength(0); c++)
             {
                 for (int i = 0; i < nucleo.MatrizResultado.GetLength(1); i++)
                 {
-                    campoMensagemCodificada.Text += Convert.ToString(nucleo.MatrizResultado[c, i]) + ' ';
+                    aux += Convert.ToString(nucleo.MatrizResultado[c, i]) + ' ';
                 }
-                campoMensagemCodificada.Text += Environment.NewLine;
+                aux += Environment.NewLine;
             }
-            MessageBox.Show("Matriz Codificada!", "AVISO");
+            campoMensagemCodificada.Text = aux;
+            MessageBox.Show("Mensagem Codificada!", "AVISO");
         }
 
 
@@ -90,6 +91,82 @@ namespace Criptografia
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             botaoSair_Click(sender, e);
+        }
+
+        private void botaoLimparCamposDes_Click(object sender, EventArgs e)
+        {
+            campoMensagemCodificadaDes.Text = "";
+            campoMatrizCodificadoraDes.Text = "";
+            campoMatrizDecodificadora.Text = "";
+            campoResultadoDes.Text = "";
+        }
+
+        private void botaoDecodificarMensagem_Click(object sender, EventArgs e)
+        {
+            if ((campoMensagemCodificadaDes.Text == "") || (campoMatrizCodificadoraDes.Text == ""))
+            {
+                MessageBox.Show("Os campos Mensagem Codificada e Matriz Codificadora não podem ser nulos!", "AVISO");
+                return;
+            }
+            if (campoMatrizCodificadoraDes.Text[campoMatrizCodificadoraDes.Text.Length - 1] == '\n')
+            {
+                campoMatrizCodificadoraDes.Text = campoMatrizCodificadoraDes.Text.Remove(campoMatrizCodificadoraDes.Text.Length - 2);
+            }
+            if (!nucleo.inserirMatrizCodificadora(campoMatrizCodificadoraDes.Text, campoMatrizCodificadoraDes.Lines.Length))
+            {
+                MessageBox.Show("Matriz Codificadora Inválida!", "AVISO");
+                return;
+            }
+            if (!nucleo.verificarMatriz(nucleo.MatrizCodificadora))
+            {
+                MessageBox.Show("Matriz Codificadora Inválida!", "AVISO");
+                return;
+            }
+            if (campoMensagemCodificadaDes.Text[campoMensagemCodificadaDes.Text.Length - 1] == '\n')
+            {
+                campoMensagemCodificadaDes.Text = campoMensagemCodificadaDes.Text.Remove(campoMensagemCodificadaDes.Text.Length - 2);
+            }
+            if (!nucleo.inserirMatrizMensagemCodificada(campoMensagemCodificadaDes.Text, campoMensagemCodificadaDes.Lines.Length))
+            {
+                MessageBox.Show("Mensagem Codificada Inválida!", "AVISO");
+                return;
+            }
+            nucleo.gerarMatrizInversa();
+            campoMatrizDecodificadora.Text = "";
+            for (int c = 0; c < nucleo.MatrizInversa.GetLength(0); c++)
+            {
+                for (int i = 0; i < nucleo.MatrizInversa.GetLength(1); i++)
+                {
+                    campoMatrizDecodificadora.Text += Convert.ToString(nucleo.MatrizInversa[c, i]) + ' ';
+                }
+                campoMatrizDecodificadora.Text += Environment.NewLine;
+            }
+            if (!nucleo.verificarMatrizMensagemCodificada())
+            {
+                MessageBox.Show("Mensagem Codificada e Matriz Decodificadora incompatíveis!", "AVISO");
+                return;
+            }
+            nucleo.DecodificarMensagem();
+            String aux = "";
+            for (int c = 0; c < nucleo.MatrizResultado.GetLength(0); c++)
+            {
+                for (int i = 0; i < nucleo.MatrizResultado.GetLength(1); i++)
+                {
+                    aux += (char) nucleo.MatrizResultado[c, i];
+                }
+            }
+            campoResultadoDes.Text = aux;
+            MessageBox.Show("Mensagem Decodificada!", "AVISO");
+        }
+
+        private void criptografiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuAbas.SelectTab(0);
+        }
+
+        private void descriptografiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuAbas.SelectTab(1);
         }
     }
 }

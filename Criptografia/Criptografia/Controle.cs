@@ -12,17 +12,23 @@ namespace Criptografia
         private int[,] matrizCodificadora;
         private char[,] matrizMensagem;
         private int[,] matrizResultado;
+        private decimal[,] matrizInversa;
+        private int[,] matrizMensagemCodificada;
 
         public Controle()
         {
             MatrizCodificadora = new int[1, 1];
             matrizMensagem = new char[1, 1];
             MatrizResultado = new int[1, 1];
+            MatrizInversa = new decimal[1, 1];
+            MatrizMensagemCodificada = new int[1, 1];
         }
 
         public int[,] MatrizCodificadora { get => matrizCodificadora; set => matrizCodificadora = value; }
         public char[,] MatrizMensagem { get => matrizMensagem; set => matrizMensagem = value; }
         public int[,] MatrizResultado { get => matrizResultado; set => matrizResultado = value; }
+        public decimal[,] MatrizInversa { get => matrizInversa; set => matrizInversa = value; }
+        public int[,] MatrizMensagemCodificada { get => matrizMensagemCodificada; set => matrizMensagemCodificada = value; }
 
         public void gerarMatrizAleatoria(int limite)
         {
@@ -35,6 +41,68 @@ namespace Criptografia
                 for (int i = 0; i < aux; i++)
                 {
                     MatrizCodificadora[c, i] = x.Next(1, limite);
+                }
+            }
+        }
+
+        public void gerarMatrizInversa()
+        {
+            if (matrizCodificadora.GetLength(0) == 1)
+            {
+                MatrizInversa = new decimal[1, 1];
+                matrizInversa[0, 0] = (decimal) 1.0 / matrizCodificadora[0, 0];
+            }
+            else
+            {
+                MatrizInversa = new decimal[MatrizCodificadora.GetLength(0), MatrizCodificadora.GetLength(1)];
+                for (int c = 0; c < matrizInversa.GetLength(0); c++)
+                {
+                    for (int i = 0; i < matrizInversa.GetLength(1); i++)
+                    {
+                        if (c == i)
+                        {
+                            matrizInversa[c, i] = (decimal) 1.0;
+                        }
+                        else
+                        {
+                            matrizInversa[c, i] = (decimal) 0.0;
+                        }
+                    }
+                }
+                decimal[,] matrizOriginal = new decimal[matrizCodificadora.GetLength(0), matrizCodificadora.GetLength(1)];
+                for (int c = 0; c < matrizCodificadora.GetLength(0); c++)
+                {
+                    for (int i = 0; i < matrizCodificadora.GetLength(1); i++)
+                    {
+                        matrizOriginal[c, i] = (decimal) matrizCodificadora[c, i];
+                    }
+                }
+                for (int c = 0; c < matrizOriginal.GetLength(0); c++)
+                {
+                    if (matrizOriginal[c, c] != (decimal) 1.0)
+                    {
+                        decimal fator = (decimal) 1.0 / matrizOriginal[c, c];
+                        for (int i = 0; i < matrizOriginal.GetLength(1); i++)
+                        {
+                            matrizOriginal[c, i] *= fator;
+                            matrizInversa[c, i] *= fator;
+                        }
+                    }
+                    for (int i = 0; i < matrizOriginal.GetLength(0); i++)
+                    {
+                        if (c != i)
+                        {
+                            if (matrizOriginal[i, c] != (decimal) 0.0)
+                            {
+                                decimal fator = (decimal) (-1.0) * matrizOriginal[i, c];
+                                for (int j = 0; j < matrizOriginal.GetLength(1); j++)
+                                {
+                                    matrizOriginal[i, j] = (matrizOriginal[c, j] * fator) + matrizOriginal[i, j];
+                                    matrizInversa[i, j] = (matrizInversa[c, j] * fator) + matrizInversa[i, j];
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -131,7 +199,7 @@ namespace Criptografia
             }
             else if (texto.Length % matrizCodificadora.GetLength(1) != 0)
             {
-                matrizMensagem = new char[matrizCodificadora.GetLength(1), texto.Length / matrizCodificadora.GetLength(1) + 1];            
+                matrizMensagem = new char[matrizCodificadora.GetLength(1), texto.Length / matrizCodificadora.GetLength(1) + 1];
             }
             else
             {
@@ -187,6 +255,38 @@ namespace Criptografia
             return true;
         }
 
+        public bool inserirMatrizMensagemCodificada(String texto, int linhas)
+        {
+            String[] elementos = texto.Split((' ' + Environment.NewLine).ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < elementos.Length; i++)
+            {
+                try
+                {
+                    Convert.ToInt32(elementos[i]);
+                }
+                catch
+                {
+                    return false;
+                }
+
+            }
+            if (elementos.Length % linhas != 0)
+            {
+                return false;
+            }
+            matrizMensagemCodificada = new int[linhas, elementos.Length / linhas];
+            int cont = 0;
+            for (int c = 0; c < linhas; c++)
+            {
+                for (int i = 0; i < elementos.Length / linhas; i++)
+                {
+                    matrizMensagemCodificada[c, i] = Convert.ToInt32(elementos[cont]);
+                    cont++;
+                }
+            }
+            return true;
+        }
+
         public void codificarMensagem()
         {
             matrizResultado = new int[matrizMensagem.GetLength(0), matrizMensagem.GetLength(1)];
@@ -202,6 +302,32 @@ namespace Criptografia
                     matrizResultado[c, i] = resultado;
                 }
             }
+        }
+
+        public void DecodificarMensagem()
+        {
+            matrizResultado = new int[matrizMensagemCodificada.GetLength(0), matrizMensagemCodificada.GetLength(1)];
+            for (int c = 0; c < MatrizResultado.GetLength(0); c++)
+            {
+                for (int i = 0; i < MatrizResultado.GetLength(1); i++)
+                {
+                    decimal resultado = (decimal) 0.0;
+                    for (int j = 0; j < matrizInversa.GetLength(1); j++)
+                    {
+                        resultado += (matrizInversa[c, j] * (decimal) matrizMensagemCodificada[j, i]);
+                    }
+                    matrizResultado[c, i] = (int) Convert.ToInt64(resultado);
+                }
+            }
+        }
+
+        public bool verificarMatrizMensagemCodificada()
+        {
+            if (matrizMensagemCodificada.GetLength(0) == matrizInversa.GetLength(1))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

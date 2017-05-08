@@ -14,6 +14,7 @@ namespace Criptografia
         private int[,] matrizResultado;
         private decimal[,] matrizInversa;
         private int[,] matrizMensagemCodificada;
+        private bool estadoAlteracao;
 
         public Controle()
         {
@@ -22,6 +23,7 @@ namespace Criptografia
             MatrizResultado = new int[1, 1];
             MatrizInversa = new decimal[1, 1];
             MatrizMensagemCodificada = new int[1, 1];
+            estadoAlteracao = false;
         }
 
         public int[,] MatrizCodificadora { get => matrizCodificadora; set => matrizCodificadora = value; }
@@ -29,6 +31,7 @@ namespace Criptografia
         public int[,] MatrizResultado { get => matrizResultado; set => matrizResultado = value; }
         public decimal[,] MatrizInversa { get => matrizInversa; set => matrizInversa = value; }
         public int[,] MatrizMensagemCodificada { get => matrizMensagemCodificada; set => matrizMensagemCodificada = value; }
+        public bool EstadoAlteracao { get => estadoAlteracao; set => estadoAlteracao = value; }
 
         public void gerarMatrizAleatoria(int limite)
         {

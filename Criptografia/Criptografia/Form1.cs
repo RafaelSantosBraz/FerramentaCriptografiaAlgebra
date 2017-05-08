@@ -18,6 +18,7 @@ namespace Criptografia
         {
             InitializeComponent();
             nucleo = new Controle();
+            campoMensagem.Select();
         }
 
         private void opçõesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,8 +46,8 @@ namespace Criptografia
             {
                 MessageBox.Show("Os campos Mensagem e Matriz Codificadora não podem ser nulos!", "AVISO");
                 return;
-            } 
-            if(campoMatrizCodificadora.Text[campoMatrizCodificadora.Text.Length - 1] == '\n')
+            }
+            if (campoMatrizCodificadora.Text[campoMatrizCodificadora.Text.Length - 1] == '\n')
             {
                 campoMatrizCodificadora.Text = campoMatrizCodificadora.Text.Remove(campoMatrizCodificadora.Text.Length - 2);
             }
@@ -73,6 +74,7 @@ namespace Criptografia
             }
             campoMensagemCodificada.Text = aux;
             MessageBox.Show("Mensagem Codificada!", "AVISO");
+            nucleo.EstadoAlteracao = true;
         }
 
 
@@ -81,6 +83,7 @@ namespace Criptografia
             campoMatrizCodificadora.Text = "";
             campoMensagem.Text = "";
             campoMensagemCodificada.Text = "";
+            campoMensagem.Select();
         }
 
         private void botaoSair_Click(object sender, EventArgs e)
@@ -99,6 +102,7 @@ namespace Criptografia
             campoMatrizCodificadoraDes.Text = "";
             campoMatrizDecodificadora.Text = "";
             campoResultadoDes.Text = "";
+            campoMensagemCodificadaDes.Select();
         }
 
         private void botaoDecodificarMensagem_Click(object sender, EventArgs e)
@@ -137,7 +141,7 @@ namespace Criptografia
             {
                 for (int i = 0; i < nucleo.MatrizInversa.GetLength(1); i++)
                 {
-                    campoMatrizDecodificadora.Text += Convert.ToString(nucleo.MatrizInversa[c, i]) + ' ';
+                    campoMatrizDecodificadora.Text += (nucleo.MatrizInversa[c, i]).ToString("0.000") + ' ';
                 }
                 campoMatrizDecodificadora.Text += Environment.NewLine;
             }
@@ -152,7 +156,7 @@ namespace Criptografia
             {
                 for (int i = 0; i < nucleo.MatrizResultado.GetLength(1); i++)
                 {
-                    aux += (char) nucleo.MatrizResultado[c, i];
+                    aux += (char)nucleo.MatrizResultado[c, i];
                 }
             }
             campoResultadoDes.Text = aux;
@@ -167,6 +171,43 @@ namespace Criptografia
         private void descriptografiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             menuAbas.SelectTab(1);
+        }
+
+        private void botaoDescriptografar_Click(object sender, EventArgs e)
+        {
+            if (nucleo.EstadoAlteracao == false)
+            {
+                MessageBox.Show("Codifique a Mensagem antes de Decodificar!", "AVISO"); 
+            }
+            else
+            {
+                campoMensagemCodificadaDes.Text = campoMensagemCodificada.Text;
+                campoMatrizCodificadoraDes.Text = campoMatrizCodificadora.Text;
+                descriptografiaToolStripMenuItem_Click(descriptografiaToolStripMenuItem, e);
+                botaoDecodificarMensagem_Click(botaoDecodificarMensagem, e);
+            }
+        }
+
+        private void menuAbas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (menuAbas.SelectedIndex == 0)
+            {
+                campoMensagem.Select();
+            }
+            else
+            {
+                campoMensagemCodificadaDes.Select();
+            }
+        }
+
+        private void campoMatrizCodificadora_TextChanged(object sender, EventArgs e)
+        {
+            nucleo.EstadoAlteracao = false;
+        }
+
+        private void campoMensagem_TextChanged(object sender, EventArgs e)
+        {
+            nucleo.EstadoAlteracao = false;
         }
     }
 }
